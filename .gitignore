@@ -9,3 +9,6 @@ data/imagenes/
 
 # Sistema
 .DS_Store
+
+# Datos generados por los scripts
+data/*.csv
