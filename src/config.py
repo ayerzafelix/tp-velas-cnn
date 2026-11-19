@@ -25,3 +25,13 @@ SECTORES = {
 REFERENCIA = "SPY"
 ACCIONES = [t for lista in SECTORES.values() for t in lista]
 TICKERS = ACCIONES + [REFERENCIA]
+
+# diseño del experimento (ver openspec/changes/diseno-del-experimento)
+VENTANA = 20      # velas por imagen
+HORIZONTE = 8     # semanas hacia adelante para la etiqueta
+PASO = 20         # una muestra cada 20 semanas, así las imágenes no se pisan
+FIN_TRAIN = "2017-06-16"
+INICIO_VAL, FIN_VAL = "2018-01-01", "2020-06-12"
+INICIO_TEST = "2021-01-01"
+HUECO_MINIMO = 28  # semanas entre conjuntos
+ARCHIVO_ETIQUETAS = CARPETA_DATOS / "etiquetas.csv"

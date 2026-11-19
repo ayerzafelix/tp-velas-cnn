@@ -27,6 +27,10 @@ Entrenamos con los años más viejos y probamos con los más nuevos, así el tes
 
 **Mecánica del backtest.** Cada 8 semanas, dentro del período de test, compramos en partes iguales todas las acciones que el modelo marca como "le gana", las mantenemos 8 semanas y las vendemos. Comparamos contra comprar SPY y mantenerlo durante el mismo período.
 
+**Una muestra cada 20 semanas.** Gabi pidió que las fotos no se solapen demasiado. Con un paso igual al largo de la imagen, dos fotos seguidas de la misma acción no comparten ninguna vela, y como el horizonte es de 8 semanas tampoco comparten etiqueta. Quedan unas 2.600 muestras en total, dentro de lo que pidieron los tutores (1.500 a 2.000 o más).
+
+**Precios en logaritmo en las imágenes.** El análisis de estacionariedad mostró que el log-rendimiento es estacionario en las 51 series y el log del precio en ninguna. Dibujamos las velas con el logaritmo de los precios para que una suba de 10% se vea igual en cualquier acción y en cualquier momento.
+
 **Umbral.** El modelo marca "le gana" cuando la probabilidad es mayor a 0,5.
 
 **Baseline numérico.** Una regresión logística con dos variables calculadas sobre las mismas 20 semanas de la imagen: el log-rendimiento de la acción menos el de SPY, y la volatilidad de la acción.
@@ -39,5 +43,4 @@ Entrenamos con los años más viejos y probamos con los más nuevos, así el tes
 
 ## Open Questions
 
-- Si las velas se dibujan con el precio en escala logarítmica. Lo decidimos con el resultado del análisis de estacionariedad.
 - El tamaño en píxeles de las imágenes.

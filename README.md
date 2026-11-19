@@ -20,8 +20,8 @@ Las definiciones y decisiones del trabajo están en `openspec/`, escritas con [O
 
 | Cambio | Qué define | Estado |
 |---|---|---|
-| `datos-y-eda-inicial` | Descarga, calidad de los precios y estacionariedad | Implementado, falta correr con datos reales |
-| `diseno-del-experimento` | Target, imágenes, split, métricas, baselines y backtest | Definido, falta implementar |
+| `datos-y-eda-inicial` | Descarga, calidad de los precios y estacionariedad | Terminado (archivado) |
+| `diseno-del-experimento` | Target, imágenes, split, métricas, baselines y backtest | En curso: etiquetas y split |
 
 ## Estructura del repositorio
 

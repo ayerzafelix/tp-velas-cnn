@@ -17,4 +17,11 @@
 ## 4. Colab
 
 - [x] 4.1 Crear `notebooks/correr_en_colab.ipynb`, que clona el repo y corre los scripts, y sacar el notebook anterior
-- [ ] 4.2 Correr el notebook en Colab con los datos reales y anotar los resultados en el informe
+- [x] 4.2 Correr el notebook en Colab con los datos reales y anotar los resultados
+
+## Resultados con datos reales (19/11)
+
+- 51 series de 1096 semanas, sin nulos.
+- Calidad: 0 velas mal armadas y 0 precios en cero o negativos.
+- 22 semanas con saltos de más de 40%. Son hechos reales (16 de bancos en la crisis de 2008 y 2009, Boeing y Occidental en el COVID, Occidental en 2022 y Netflix en enero de 2013), así que se mantienen.
+- Estacionariedad: el log del precio no es estacionario en ninguna de las 51 series y el log-rendimiento sí lo es en las 51.
