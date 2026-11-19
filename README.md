@@ -8,7 +8,7 @@ Trabajo final · Ciencia de Datos (A422) · Universidad de San Andrés · 2026
 
 ## Estado
 
-🚧 En desarrollo.
+En desarrollo.
 
 ## Estructura del repositorio
 
