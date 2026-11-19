@@ -35,3 +35,5 @@ INICIO_VAL, FIN_VAL = "2018-01-01", "2020-06-12"
 INICIO_TEST = "2021-01-01"
 HUECO_MINIMO = 28  # semanas entre conjuntos
 ARCHIVO_ETIQUETAS = CARPETA_DATOS / "etiquetas.csv"
+LADO = 64          # las imágenes son de 64 x 64 píxeles
+CARPETA_IMAGENES = CARPETA_DATOS / "imagenes"

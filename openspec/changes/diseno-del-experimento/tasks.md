@@ -2,9 +2,11 @@
 
 ## 1. Etiquetas
 
-- [ ] 1.1 Calcular el rendimiento relativo a SPY de t a t+8 y la etiqueta, y verificar el caso de ejemplo de la spec
-- [ ] 1.2 Asignar cada muestra a entrenamiento, validación o test con los huecos de 28 semanas y verificar que no se comparte ninguna semana
-- [ ] 1.3 Informar el balance de clases total, por sector y por conjunto
+- [x] 1.1 Calcular el rendimiento relativo a SPY de t a t+8 y la etiqueta, y verificar el caso de ejemplo de la spec
+- [x] 1.2 Asignar cada muestra a entrenamiento, validación o test con los huecos de 28 semanas y verificar que no se comparte ninguna semana
+- [x] 1.3 Informar el balance de clases total, por sector y por conjunto
+
+Resultados con datos reales (19/11): 2.600 muestras (1.600 train, 350 validación, 650 test), huecos de 40 semanas entre conjuntos. Le ganan al SPY el 50,7% en total, 51,1% en train, 46,3% en validación y 52,0% en test, así que las clases quedan balanceadas. Por sector va de 40,0% en Energía a 57,3% en Finanzas.
 
 ## 2. Imágenes
 

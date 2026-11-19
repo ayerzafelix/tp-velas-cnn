@@ -31,6 +31,8 @@ Entrenamos con los años más viejos y probamos con los más nuevos, así el tes
 
 **Precios en logaritmo en las imágenes.** El análisis de estacionariedad mostró que el log-rendimiento es estacionario en las 51 series y el log del precio en ninguna. Dibujamos las velas con el logaritmo de los precios para que una suba de 10% se vea igual en cualquier acción y en cualquier momento.
 
+**Formato de la imagen.** 64 x 64 píxeles a color, con fondo negro, velas alcistas en verde y bajistas en rojo. Cada vela ocupa 3 píxeles de ancho, así entran las 20. Guardamos cada imagen como PNG en una carpeta por conjunto y por clase.
+
 **Umbral.** El modelo marca "le gana" cuando la probabilidad es mayor a 0,5.
 
 **Baseline numérico.** Una regresión logística con dos variables calculadas sobre las mismas 20 semanas de la imagen: el log-rendimiento de la acción menos el de SPY, y la volatilidad de la acción.
@@ -41,6 +43,3 @@ Entrenamos con los años más viejos y probamos con los más nuevos, así el tes
 - [Datos menos independientes] Las 50 acciones se mueven juntas con el mercado, así que la información real es menor que la cantidad de muestras → lo informamos como limitación y miramos los resultados por período.
 - [La volatilidad cambia en el tiempo] Aunque los log-rendimientos sean estacionarios, en las crisis se mueven mucho más → lo tenemos en cuenta al leer los resultados por período.
 
-## Open Questions
-
-- El tamaño en píxeles de las imágenes.
