@@ -21,7 +21,8 @@ Las definiciones y decisiones del trabajo están en `openspec/`, escritas con [O
 | Cambio | Qué define | Estado |
 |---|---|---|
 | `datos-y-eda-inicial` | Descarga, calidad de los precios y estacionariedad | Terminado (archivado) |
-| `diseno-del-experimento` | Target, imágenes, split, métricas, baselines y backtest | En curso: etiquetas y split |
+| `diseno-del-experimento` | Target, imágenes, split, métricas, baselines y backtest | En curso: falta correr el backtest |
+| `primera-red` | Primera red convolucional | Implementada, falta correr con datos reales |
 
 ## Estructura del repositorio
 

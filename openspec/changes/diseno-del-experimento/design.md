@@ -25,7 +25,7 @@ Entrenamos con los años más viejos y probamos con los más nuevos, así el tes
 
 **Costos del backtest.** Suponemos un costo de 0,1% por cada compra y por cada venta. Es un supuesto nuestro y se puede revisar.
 
-**Mecánica del backtest.** Cada 8 semanas, dentro del período de test, compramos en partes iguales todas las acciones que el modelo marca como "le gana", las mantenemos 8 semanas y las vendemos. Comparamos contra comprar SPY y mantenerlo durante el mismo período.
+**Mecánica del backtest.** En cada fecha de muestra del período de test (una cada 20 semanas) compramos en partes iguales todas las acciones que el modelo marca como "le gana", las mantenemos 8 semanas y las vendemos. Si el modelo no marca ninguna, esa vez no invertimos. Comparamos contra comprar SPY en esas mismas fechas y mantenerlo las mismas 8 semanas, con los mismos costos. El rendimiento acumulado es el producto de los rendimientos de cada período.
 
 **Una muestra cada 20 semanas.** Gabi pidió que las fotos no se solapen demasiado. Con un paso igual al largo de la imagen, dos fotos seguidas de la misma acción no comparten ninguna vela, y como el horizonte es de 8 semanas tampoco comparten etiqueta. Quedan unas 2.600 muestras en total, dentro de lo que pidieron los tutores (1.500 a 2.000 o más).
 

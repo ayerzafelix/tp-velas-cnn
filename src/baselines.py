@@ -35,11 +35,12 @@ if __name__ == "__main__":
         "siempre la clase más frecuente": DummyClassifier(strategy="most_frequent"),
         "regresión logística (rendimiento vs SPY y volatilidad)": make_pipeline(StandardScaler(), LogisticRegression()),
     }
-    filas = []
+    filas, predicciones = [], []
     for nombre, modelo in modelos.items():
         modelo.fit(X[train], y[train])
         prob = modelo.predict_proba(X[test])[:, 1]
         pred = (prob > 0.5).astype(int)
+        predicciones.append(m.loc[test, ["ticker", "fecha"]].assign(modelo=nombre, prob=prob))
         filas.append({
             "modelo": nombre,
             "auc_test": round(roc_auc_score(y[test], prob), 3),
@@ -52,3 +53,4 @@ if __name__ == "__main__":
 
     CARPETA_RESULTADOS.mkdir(exist_ok=True)
     res.to_csv(CARPETA_RESULTADOS / "baselines.csv", index=False)
+    pd.concat(predicciones).to_csv(CARPETA_RESULTADOS / "predicciones_baselines.csv", index=False)
