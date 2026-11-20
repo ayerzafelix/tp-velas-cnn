@@ -27,4 +27,4 @@ La regresión logística queda en el nivel del azar y no supera a decir siempre 
 
 ## 4. Backtest
 
-- [ ] 4.1 Implementar el backtest con costos y verificarlo con un caso chico calculado a mano
+- [x] 4.1 Implementar el backtest con costos y verificarlo con un caso chico calculado a mano
