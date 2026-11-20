@@ -52,3 +52,24 @@ if __name__ == "__main__":
     print(f"test: {len(fechas)} períodos de {HORIZONTE} semanas, desde {pd.Timestamp(fechas[0]).date()}, costo {COSTO:.1%} por operación")
     print(res.rename(columns={"rendimiento_acumulado": "rendimiento_acumulado_%"}).to_string(index=False))
     res.to_csv(CARPETA_RESULTADOS / "backtest.csv", index=False)
+
+    # detalle de la red: de qué períodos y de qué acciones sale el resultado
+    red = preds[preds["modelo"] == "red convolucional"]
+    if len(red):
+        detalle, aportes = [], []
+        for f, r_spy in zip(fechas, spy):
+            elegidas = red[(red["fecha"] == f) & (red["prob"] > 0.5)]["ticker"]
+            rends = [rendimiento(t, f) for t in elegidas]
+            detalle.append({"fecha": pd.Timestamp(f).date(), "compras": len(rends),
+                            "red_%": round(resultado_periodo(rends) * 100, 1), "spy_%": round(r_spy * 100, 1)})
+            # cada acción pesa lo mismo dentro del período
+            aportes += [{"ticker": t, "fecha": pd.Timestamp(f).date(), "rendimiento_%": round(x * 100, 1),
+                         "aporte_al_periodo_%": round(x / len(rends) * 100, 1)} for t, x in zip(elegidas, rends)]
+        detalle, aportes = pd.DataFrame(detalle), pd.DataFrame(aportes)
+
+        print("\nred convolucional, período por período")
+        print(detalle.to_string(index=False))
+        print("\nlas 5 compras que más aportaron")
+        print(aportes.sort_values("aporte_al_periodo_%", ascending=False).head(5).to_string(index=False))
+        detalle.to_csv(CARPETA_RESULTADOS / "backtest_red_por_periodo.csv", index=False)
+        aportes.to_csv(CARPETA_RESULTADOS / "backtest_red_compras.csv", index=False)

@@ -5,6 +5,7 @@
 - [x] 1.1 Escribir `src/red.py` con la arquitectura de la spec y verificar que entrena y guarda las predicciones de test
 - [x] 1.2 Correr en Colab y anotar las métricas de test y las curvas de entrenamiento
 - [x] 1.3 Comparar contra los baselines y en el backtest
+- [ ] 1.4 Desarmar el backtest de la red por período y por acción para ver de dónde sale el 54,7%
 
 ## Resultados con datos reales (20/11)
 
