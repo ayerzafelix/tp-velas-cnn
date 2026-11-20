@@ -17,7 +17,13 @@ Resultados con datos reales (20/11): 2.600 imágenes de 64 x 64. Train 818 de cl
 
 ## 3. Baselines
 
-- [ ] 3.1 Entrenar los dos baselines y reportar AUC y precisión en la clase 1 sobre test
+- [x] 3.1 Entrenar los dos baselines y reportar AUC y precisión en la clase 1 sobre test
+
+Resultados en test (20/11), 650 muestras, 338 le ganan al SPY:
+- Siempre la clase más frecuente (dice siempre "le gana"): AUC 0,500 y precisión 0,520.
+- Regresión logística con rendimiento contra SPY y volatilidad de las 20 semanas: AUC 0,507 y precisión 0,513, diciendo "le gana" 476 veces.
+
+La regresión logística queda en el nivel del azar y no supera a decir siempre "le gana". La vara para la red es una precisión mayor a 0,520 y un AUC mayor a 0,5.
 
 ## 4. Backtest
 
