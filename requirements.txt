@@ -3,3 +3,5 @@ pandas
 numpy
 statsmodels
 matplotlib
+scikit-learn
+pillow

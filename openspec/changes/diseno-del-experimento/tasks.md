@@ -10,8 +10,10 @@ Resultados con datos reales (19/11): 2.600 muestras (1.600 train, 350 validació
 
 ## 2. Imágenes
 
-- [ ] 2.1 Dibujar las imágenes de 20 velas con la escala normalizada y sin elementos extra, y revisar a ojo una muestra
-- [ ] 2.2 Verificar que la última vela de cada imagen es la de la semana t
+- [x] 2.1 Dibujar las imágenes de 20 velas con la escala normalizada y sin elementos extra, y revisar a ojo una muestra
+- [x] 2.2 Verificar que la última vela de cada imagen es la de la semana t
+
+Resultados con datos reales (20/11): 2.600 imágenes de 64 x 64. Train 818 de clase 1 y 782 de clase 0, validación 162 y 188, test 338 y 312. Revisamos a ojo 12 ejemplos y se ven las 20 velas sin ejes ni etiquetas. El script verifica en cada imagen que la última vela sea la de la semana t.
 
 ## 3. Baselines
 
