@@ -18,6 +18,19 @@ def acumulado(periodos):
     return np.prod([1 + r for r in periodos]) - 1
 
 
+def simular(preds, cierres):
+    """Rendimiento acumulado y cantidad de compras de un modelo, con las predicciones de test."""
+    posicion = {f: i for i, f in enumerate(cierres.index)}
+    periodos, compras = [], 0
+    for f in sorted(preds["fecha"].unique()):
+        i = posicion[f]
+        elegidas = preds[(preds["fecha"] == f) & (preds["prob"] > 0.5)]["ticker"]
+        rends = [cierres[t].iloc[i + HORIZONTE] / cierres[t].iloc[i] - 1 for t in elegidas]
+        periodos.append(resultado_periodo(rends))
+        compras += len(rends)
+    return acumulado(periodos), compras
+
+
 if __name__ == "__main__":
     # chequeo con un caso calculado a mano: dos acciones que suben 10% y 20%, costo 0,1%
     # 0,999 x 1,15 x 0,999 - 1 = 0,14770

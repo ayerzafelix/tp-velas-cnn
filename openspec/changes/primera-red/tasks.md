@@ -6,6 +6,8 @@
 - [x] 1.2 Correr en Colab y anotar las métricas de test y las curvas de entrenamiento
 - [x] 1.3 Comparar contra los baselines y en el backtest
 - [x] 1.4 Desarmar el backtest de la red por período y por acción para ver de dónde sale el 54,7%
+- [x] 1.5 Escribir `src/varias_corridas.py`, que entrena la red 10 veces con semillas distintas
+- [ ] 1.6 Correr las 10 corridas en Colab y anotar promedio, mínimo y máximo
 
 ## Resultados con datos reales (20/11)
 

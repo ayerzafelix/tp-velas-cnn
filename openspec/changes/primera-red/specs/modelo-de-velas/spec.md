@@ -26,3 +26,10 @@ La red SHALL evaluarse en test con las mismas métricas que los baselines y sus 
 #### Scenario: Reporte de la red
 - **WHEN** termina el entrenamiento
 - **THEN** se informan el AUC y la precisión en la clase "le gana" sobre test y se guardan las predicciones en `resultados/predicciones_red.csv`
+
+### Requirement: Resultados sobre varias corridas
+Como el resultado de la red cambia entre entrenamientos, la red SHALL entrenarse 10 veces con semillas distintas y sus métricas y su backtest SHALL informarse con el promedio, el mínimo y el máximo de esas corridas. Cualquier mejora futura MUST compararse de la misma forma.
+
+#### Scenario: Comparación contra la vara
+- **WHEN** terminan las 10 corridas
+- **THEN** se informa en cuántas la precisión supera a decir siempre "le gana", en cuántas el AUC supera 0,5 y en cuántas el backtest supera a SPY
