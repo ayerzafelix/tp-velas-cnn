@@ -8,6 +8,7 @@
 - [x] 1.4 Desarmar el backtest de la red por período y por acción para ver de dónde sale el 54,7%
 - [x] 1.5 Escribir `src/varias_corridas.py`, que entrena la red 10 veces con semillas distintas
 - [x] 1.6 Correr las 10 corridas en Colab y anotar promedio, mínimo y máximo
+- [ ] 1.7 Revisar qué acciones elige la red: volatilidad, sector y rendimiento de las elegidas contra las descartadas
 
 ## Resultados con datos reales (20/11)
 
