@@ -25,3 +25,10 @@ El proyecto SHALL medir, en entrenamiento, validación y test, el rendimiento de
 #### Scenario: Acciones que ya le ganan al índice
 - **WHEN** las 50 acciones juntas le ganan al SPY sin usar ninguna red
 - **THEN** el resultado de la red se compara contra comprar las 50 y no solo contra SPY, y el sesgo se informa como limitación
+
+### Requirement: Evaluación en acciones que vienen de caer
+El proyecto SHALL evaluar la red de las 10 corridas solo en los casos de test en los que la acción cayó entre 5% y 10% en las 4 semanas anteriores a la semana t, con AUC, precisión en "le gana" y rendimiento contra SPY de las elegidas y las descartadas, y SHALL informar cuántas muestras de ese tipo hay en cada conjunto.
+
+#### Scenario: Comparación en la situación puntual
+- **WHEN** se evalúa la red en los casos que vienen de caer
+- **THEN** se compara contra decir siempre "le gana" en esos mismos casos y se informa en cuántas de las 10 corridas la red lo supera
