@@ -60,6 +60,7 @@ if __name__ == "__main__":
     CARPETA_RESULTADOS.mkdir(exist_ok=True)
     datos["test"][["ticker", "fecha"]].assign(modelo="red convolucional", prob=prob).to_csv(
         CARPETA_RESULTADOS / "predicciones_red.csv", index=False)
+    red.save(CARPETA_RESULTADOS / "red.keras")  # la guardo para el mapa de calor
 
     fig, ax = plt.subplots(1, 2, figsize=(10, 3.5))
     for a, (k, titulo) in zip(ax, [("loss", "pérdida"), ("auc", "AUC")]):
