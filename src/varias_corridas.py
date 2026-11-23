@@ -19,7 +19,7 @@ if __name__ == "__main__":
     precios = pd.read_csv(ARCHIVO_PRECIOS, parse_dates=["fecha"])
     cierres = precios.pivot(index="fecha", columns="ticker", values="close").sort_index()
 
-    filas = []
+    filas, todas = [], []
     for semilla in range(CORRIDAS):
         tf.keras.utils.set_random_seed(semilla)
         red = armar_red()
@@ -30,6 +30,7 @@ if __name__ == "__main__":
 
         prob = red.predict(X_te, verbose=0).ravel()
         pred = (prob > 0.5).astype(int)
+        todas.append(datos["test"][["ticker", "sector", "fecha", "etiqueta", "rend_relativo"]].assign(semilla=semilla, prob=prob))
         rend, compras = simular(datos["test"][["ticker", "fecha"]].assign(prob=prob), cierres)
         filas.append({"semilla": semilla,
                       "auc": roc_auc_score(y_te, prob),
@@ -57,3 +58,5 @@ if __name__ == "__main__":
 
     CARPETA_RESULTADOS.mkdir(exist_ok=True)
     res.to_csv(CARPETA_RESULTADOS / "red_varias_corridas.csv", index=False)
+    # las predicciones de cada corrida, para analizarlas después
+    pd.concat(todas).to_csv(CARPETA_RESULTADOS / "predicciones_red_10.csv", index=False)

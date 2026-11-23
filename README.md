@@ -22,7 +22,8 @@ Las definiciones y decisiones del trabajo están en `openspec/`, escritas con [O
 |---|---|---|
 | `datos-y-eda-inicial` | Descarga, calidad de los precios y estacionariedad | Terminado |
 | `diseno-del-experimento` | Target, imágenes, split, métricas, baselines y backtest | Terminado |
-| `primera-red` | Primera red convolucional y evaluación en 10 corridas | En curso: falta revisar qué acciones elige la red |
+| `primera-red` | Primera red convolucional y evaluación en 10 corridas | Terminado |
+| `analisis-de-la-red` | Tamaño del error, qué elige la red y sesgo de selección | Implementado, falta correr con datos reales |
 
 Los cambios terminados están en `openspec/changes/archive/` y las especificaciones vigentes en `openspec/specs/`.
 
