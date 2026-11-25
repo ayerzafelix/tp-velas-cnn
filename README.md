@@ -37,7 +37,7 @@ Las definiciones y decisiones del trabajo están en `openspec/`, escritas con [O
 | `mapa-de-calor` | Qué mira la red (Grad-CAM) | Terminado |
 | `subpreguntas-sin-spy` | Subpreguntas 3 y 4: si la acción sube y qué patrones usa la red | Terminado |
 | `exploratorio-dependencia` | Cuánto se mueven las acciones y cuánto se mueven juntas | Terminado |
-| `extra-walk-forward` | Extra: probar en 5 bloques de años que avanzan en el tiempo, extendido y rolling | Implementado, falta correr |
+| `extra-walk-forward` | Extra: probar en 5 bloques de años que avanzan en el tiempo, extendido y rolling | Descartado por tiempo, queda como próximo paso |
 
 Los cambios terminados están en `openspec/changes/archive/` y las especificaciones vigentes en `openspec/specs/`.
 
