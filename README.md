@@ -8,6 +8,15 @@ Trabajo final · Ciencia de Datos (A422) · Universidad de San Andrés · 2026
 
 Partimos de que las velas por sí solas tienen poca información sobre el futuro del precio, por eso esperamos resultados apenas por encima del azar. Aun así, creemos que algunas formas de velas pueden darle al modelo una pequeña ventaja.
 
+## Subpreguntas
+
+De la pregunta principal salen subpreguntas que fuimos respondiendo en orden:
+
+1. ¿Puede la red anticipar si una acción le gana al S&P 500?
+2. ¿Funciona mejor cuando la acción viene de caer entre 5% y 10%?
+3. ¿Puede anticipar algo más básico, si la acción sube o no, sin compararla con nada?
+4. ¿Qué patrones usa la red para decidir?
+
 ## Cómo correrlo
 
 El código vive en `src/` y se corre desde Colab, que usamos por la GPU para entrenar la red.
@@ -26,6 +35,7 @@ Las definiciones y decisiones del trabajo están en `openspec/`, escritas con [O
 | `analisis-de-la-red` | Tamaño del error, qué elige la red y sesgo de selección | Terminado |
 | `iteracion-caidas` | La red en acciones que vienen de caer 5% a 10% | Terminado |
 | `mapa-de-calor` | Qué mira la red (Grad-CAM) | Terminado |
+| `subpreguntas-sin-spy` | Subpreguntas 3 y 4: si la acción sube y qué patrones usa la red | Implementado, falta correr |
 
 Los cambios terminados están en `openspec/changes/archive/` y las especificaciones vigentes en `openspec/specs/`.
 

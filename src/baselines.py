@@ -19,6 +19,7 @@ def variables(m, precios):
         ventana = log_rend.loc[:r["fecha"]].tail(VENTANA - 1)   # 19 cambios entre las 20 velas
         filas.append({
             "rend_vs_spy": ventana[r["ticker"]].sum() - ventana[REFERENCIA].sum(),
+            "rend_20s": ventana[r["ticker"]].sum(),
             "volatilidad": ventana[r["ticker"]].std(),
         })
     return pd.DataFrame(filas, index=m.index)
@@ -27,7 +28,7 @@ def variables(m, precios):
 if __name__ == "__main__":
     precios = pd.read_csv(ARCHIVO_PRECIOS, parse_dates=["fecha"])
     m = pd.read_csv(ARCHIVO_ETIQUETAS, parse_dates=["fecha"])
-    X = variables(m, precios)
+    X = variables(m, precios)[["rend_vs_spy", "volatilidad"]]
     y = m["etiqueta"]
     train, test = m["conjunto"] == "train", m["conjunto"] == "test"
 

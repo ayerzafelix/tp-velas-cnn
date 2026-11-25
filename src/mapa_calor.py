@@ -1,4 +1,6 @@
 """Grad-CAM: qué parte de la imagen mira la red para decidir."""
+import sys
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -37,11 +39,14 @@ def grad_cam(modelo, img):
 
 
 if __name__ == "__main__":
-    red = tf.keras.models.load_model(CARPETA_RESULTADOS / "red.keras")
+    # "python src/mapa_calor.py sube" usa la red que predice si la acción sube
+    sube = len(sys.argv) > 1 and sys.argv[1] == "sube"
+    columna, fin = ("sube", "_sube") if sube else ("etiqueta", "")
+    red = tf.keras.models.load_model(CARPETA_RESULTADOS / f"red{fin}.keras")
     modelo = modelo_con_conv(red)
     m = pd.read_csv(ARCHIVO_ETIQUETAS, parse_dates=["fecha"])
     test = m[m["conjunto"] == "test"].reset_index(drop=True)
-    X, y = cargar(test)
+    X, y = cargar(test, columna)
 
     mapas, probs = zip(*[grad_cam(modelo, x) for x in X])
     mapas, probs = np.stack(mapas), np.array(probs)
@@ -61,16 +66,17 @@ if __name__ == "__main__":
     fig, axes = plt.subplots(2, 6, figsize=(14, 5))
     for col, i in enumerate(elegidas):
         r = test.iloc[i]
-        titulo = f"{r['ticker']} {r['fecha'].date()}\nprob {probs[i]:.2f} | real {r['etiqueta']}"
+        titulo = f"{r['ticker']} {r['fecha'].date()}\nprob {probs[i]:.2f} | real {r[columna]}"
         axes[0, col].imshow(X[i])
         axes[0, col].set_title(titulo, fontsize=8)
         axes[1, col].imshow(X[i])
         axes[1, col].imshow(mapas[i], cmap="jet", alpha=0.45)
         for a in axes[:, col]:
             a.axis("off")
-    fig.suptitle("arriba la imagen, abajo dónde mira la red para decidir. Izquierda: más segura de que le gana. Derecha: más segura de que no", fontsize=9)
+    clase = "sube" if sube else "le gana"
+    fig.suptitle(f"arriba la imagen, abajo dónde mira la red para decidir. Izquierda: más segura de que {clase}. Derecha: más segura de que no", fontsize=9)
     fig.tight_layout()
-    fig.savefig(CARPETA_RESULTADOS / "mapa_calor_ejemplos.png", dpi=120)
+    fig.savefig(CARPETA_RESULTADOS / f"mapa_calor_ejemplos{fin}.png", dpi=120)
 
     fig, ax = plt.subplots(figsize=(8, 3))
     ax.bar(range(1, VENTANA + 1), por_vela, color="tab:orange")
@@ -80,5 +86,5 @@ if __name__ == "__main__":
     ax.set_xticks(range(1, VENTANA + 1))
     ax.legend(fontsize=8)
     fig.tight_layout()
-    fig.savefig(CARPETA_RESULTADOS / "mapa_calor_por_vela.png", dpi=120)
-    print("gráficos guardados en resultados/mapa_calor_ejemplos.png y resultados/mapa_calor_por_vela.png")
+    fig.savefig(CARPETA_RESULTADOS / f"mapa_calor_por_vela{fin}.png", dpi=120)
+    print(f"gráficos guardados en resultados/mapa_calor_ejemplos{fin}.png y resultados/mapa_calor_por_vela{fin}.png")

@@ -13,11 +13,12 @@ from config import ARCHIVO_ETIQUETAS, CARPETA_IMAGENES, CARPETA_RESULTADOS, LADO
 tf.keras.utils.set_random_seed(42)
 
 
-def cargar(m):
+def cargar(m, columna="etiqueta"):
+    # las imágenes están guardadas en carpetas según "etiqueta", pero se puede entrenar con otra columna
     rutas = [CARPETA_IMAGENES / c / str(e) / f"{t}_{f.date()}.png"
              for c, e, t, f in zip(m["conjunto"], m["etiqueta"], m["ticker"], m["fecha"])]
     X = np.stack([np.asarray(Image.open(r)) for r in rutas]).astype("float32") / 255
-    return X, m["etiqueta"].to_numpy()
+    return X, m[columna].to_numpy()
 
 
 def armar_red():

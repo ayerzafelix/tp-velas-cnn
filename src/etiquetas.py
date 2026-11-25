@@ -38,8 +38,11 @@ if __name__ == "__main__":
         for t in ACCIONES:
             rel = rendimiento_relativo(cierres[t].iloc[i], cierres[t].iloc[i + HORIZONTE],
                                        cierres[REFERENCIA].iloc[i], cierres[REFERENCIA].iloc[i + HORIZONTE])
+            # para la subpregunta sin SPY: si la acción sola subió de t a t+8
+            absoluto = np.log(cierres[t].iloc[i + HORIZONTE] / cierres[t].iloc[i])
             filas.append({"ticker": t, "sector": sector_de[t], "fecha": fechas[i],
-                          "posicion": i, "rend_relativo": rel, "etiqueta": int(rel > 0)})
+                          "posicion": i, "rend_relativo": rel, "etiqueta": int(rel > 0),
+                          "rend_absoluto": absoluto, "sube": int(absoluto > 0)})
     m = pd.DataFrame(filas)
     m["conjunto"] = m["fecha"].apply(conjunto_de)
     print("muestras armadas:", len(m), "| quedan en el hueco:", (m["conjunto"] == "hueco").sum())
