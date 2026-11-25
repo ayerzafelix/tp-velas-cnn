@@ -34,6 +34,12 @@ FIN_TRAIN = "2017-06-16"
 INICIO_VAL, FIN_VAL = "2018-01-01", "2020-06-12"
 INICIO_TEST = "2021-01-01"
 HUECO_MINIMO = 28  # semanas entre conjuntos
+
+# extra, walk forward: 5 bloques de prueba que avanzan en el tiempo (lo sugirió un tutor en la consulta del 25/11)
+WF_BLOQUES = [("2010-01-01", "2012-12-31"), ("2013-01-01", "2015-12-31"), ("2016-01-01", "2018-12-31"),
+              ("2019-01-01", "2021-12-31"), ("2022-01-01", "2025-12-31")]
+WF_AÑOS_ROLLING = 5        # en el rolling se entrena solo con los últimos 5 años
+WF_FECHAS_VALIDACION = 3   # las últimas 3 fechas de cada entrenamiento se usan para frenar a tiempo
 ARCHIVO_ETIQUETAS = CARPETA_DATOS / "etiquetas.csv"
 LADO = 64          # las imágenes son de 64 x 64 píxeles
 CARPETA_IMAGENES = CARPETA_DATOS / "imagenes"
