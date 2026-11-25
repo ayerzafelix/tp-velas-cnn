@@ -36,7 +36,7 @@ Las definiciones y decisiones del trabajo están en `openspec/`, escritas con [O
 | `iteracion-caidas` | La red en acciones que vienen de caer 5% a 10% | Terminado |
 | `mapa-de-calor` | Qué mira la red (Grad-CAM) | Terminado |
 | `subpreguntas-sin-spy` | Subpreguntas 3 y 4: si la acción sube y qué patrones usa la red | Terminado |
-| `exploratorio-dependencia` | Cuánto se mueven las acciones y cuánto se mueven juntas | Implementado, falta correr |
+| `exploratorio-dependencia` | Cuánto se mueven las acciones y cuánto se mueven juntas | Terminado |
 
 Los cambios terminados están en `openspec/changes/archive/` y las especificaciones vigentes en `openspec/specs/`.
 
