@@ -20,7 +20,7 @@ Resultados (25/11/2026):
 - [x] 2.2 Permitir el mapa de calor sobre la red nueva
 - [x] 2.3 Correr en Colab y anotar los resultados
 - [x] 2.4 Cambiar la tabla para mostrar la probabilidad que le da la red en vez de cuántas veces dice "sube"
-- [ ] 2.5 Volver a correr en Colab y anotar los resultados
+- [x] 2.5 Volver a correr en Colab y anotar los resultados
 
 Resultados de la primera corrida (25/11/2026):
 
@@ -32,3 +32,12 @@ Resultados de la primera corrida (25/11/2026):
   - Martillos: 7 y 7 muestras en test, muy pocas para sacar algo.
 - La volatilidad es lo único que se mantiene: las de volatilidad baja suben más en train (67,0%) y en test (65,9%) que las de media y alta (alrededor de 55% en test).
 - Mapa de calor de la red nueva: las últimas 5 velas se llevan el 24,3% de la atención (25% si mirara parejo). Las probabilidades de la red de la semilla 0 van de 0,53 a 0,84, nunca baja de 0,5. De las 3 imágenes con probabilidad más alta, 2 no subieron.
+
+Resultados con la probabilidad de la red (25/11/2026):
+
+- La probabilidad promedio va de 0,54 a 0,67. Entre grupos se mueve muy poco, como mucho 4 puntos.
+- Tendencia: es lo que más la mueve. La red le da más probabilidad a las que bajaron hasta 10% (61,9%) y menos a las que subieron más de 10% (57,9%), el mismo orden que en train (69,4% y 56,0%). En test las que subieron más de 10% son las que más suben (61,1%). La red aprendió "si ya subió mucho, sube menos" y entre 2021 y 2025 pasó lo contrario. Eso explica el AUC menor a 0,5.
+- Color: la red le da un poco más a la vela roja (60,5% contra 59,7%), como en train. En test pasa al revés.
+- Patrones del material (doji, martillo, envolvente): la probabilidad va de 58,6% a 60,6%, casi igual que "ninguno" (60,0%). La red no los usa.
+- Volatilidad: es lo único que se mantiene de train a test (las de volatilidad baja suben más), pero la red no lo toma: le da menos probabilidad a las de volatilidad baja (59,3%). Cada imagen está escalada para ocupar todo el alto, así que una acción que se movió poco y una que se movió mucho se ven parecidas.
+- Sector y año: la red casi no cambia (59,5% a 60,5% por sector, 59,4% a 61,4% por año). En 2022 subió el 29,3% de las acciones y la red siguió diciendo "sube" con 60,4%.
