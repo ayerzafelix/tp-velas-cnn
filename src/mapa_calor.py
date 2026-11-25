@@ -74,7 +74,7 @@ if __name__ == "__main__":
         for a in axes[:, col]:
             a.axis("off")
     clase = "sube" if sube else "le gana"
-    fig.suptitle(f"arriba la imagen, abajo dónde mira la red para decidir. Izquierda: más segura de que {clase}. Derecha: más segura de que no", fontsize=9)
+    fig.suptitle(f"arriba la imagen, abajo dónde mira la red para decidir. Izquierda: la probabilidad más alta de que {clase}. Derecha: la más baja", fontsize=9)
     fig.tight_layout()
     fig.savefig(CARPETA_RESULTADOS / f"mapa_calor_ejemplos{fin}.png", dpi=120)
 

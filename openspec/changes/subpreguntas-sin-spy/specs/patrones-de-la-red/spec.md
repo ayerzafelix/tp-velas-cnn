@@ -7,11 +7,11 @@ Muestra qué características de las velas asocia la red con "sube" y si esa aso
 ## ADDED Requirements
 
 ### Requirement: Patrones contra predicciones
-Para cada imagen de test el proyecto SHALL describir hacia dónde venía la acción en las 20 semanas, el color de la última vela, si la última vela es un doji, un martillo (separando si venía de bajar), una envolvente alcista o una envolvente bajista, y la volatilidad, y SHALL informar para cada grupo cuántas veces la red promedio de las 10 corridas dice "sube", cuántas sube de verdad, cuántas acierta y cuántas subían en entrenamiento.
+Para cada imagen de test el proyecto SHALL describir hacia dónde venía la acción en las 20 semanas, el color de la última vela, si la última vela es un doji, un martillo (separando si venía de bajar), una envolvente alcista o una envolvente bajista, y la volatilidad, y SHALL informar para cada grupo cuántas subían en entrenamiento, la probabilidad promedio que le dan las 10 redes de que suba y cuántas suben de verdad en test.
 
 #### Scenario: Patrón que la red usa
-- **WHEN** la red dice "sube" mucho más en un grupo que en otro
-- **THEN** se ve si ese grupo también sube más de verdad en test y en entrenamiento
+- **WHEN** la red le da más probabilidad de subir a un grupo que a otro
+- **THEN** se ve si ese grupo subía más en entrenamiento y si sube más de verdad en test
 
 ### Requirement: Dónde acierta y dónde no
 El proyecto SHALL informar los mismos números por sector y por año de test.

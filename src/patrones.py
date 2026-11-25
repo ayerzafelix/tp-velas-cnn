@@ -48,13 +48,13 @@ def describir_velas(m, precios):
 
 
 def tabla(d, columna, train):
-    t = d.groupby(columna).agg(muestras=("sube", "size"),
-                               red_dice_sube=("dice_sube", "mean"),
-                               sube_de_verdad=("sube", "mean"),
-                               acierta=("acierta", "mean"))
+    # la red dice "sube" siempre, así que miramos la probabilidad que le da: si es más alta en un grupo, eso aprendió
+    t = d.groupby(columna, observed=True).agg(muestras=("sube", "size"))
     if columna != "año":  # los años de test no están en train
-        t["subia_en_train"] = train.groupby(columna)["sube"].mean()
-    for col in [c for c in ["red_dice_sube", "sube_de_verdad", "acierta", "subia_en_train"] if c in t]:
+        t["subia_en_train"] = train.groupby(columna, observed=True)["sube"].mean()
+    t["prob_red"] = d.groupby(columna, observed=True)["prob_promedio"].mean()
+    t["sube_de_verdad"] = d.groupby(columna, observed=True)["sube"].mean()
+    for col in [c for c in ["subia_en_train", "prob_red", "sube_de_verdad"] if c in t]:
         t[col] = (t[col] * 100).round(1)
     return t
 
@@ -77,8 +77,8 @@ if __name__ == "__main__":
     print("Usamos la opinión promedio de las 10 redes sobre cada imagen de test.")
     print(f"dice sube en {test['dice_sube'].mean():.1%} de los casos, sube de verdad el {test['sube'].mean():.1%}, acierta el {test['acierta'].mean():.1%}")
     print(f"su probabilidad va de {test['prob_promedio'].min():.2f} a {test['prob_promedio'].max():.2f}")
-    print("\nlas columnas están en %: cuántas veces la red dice sube, cuántas sube de verdad, cuántas acierta,")
-    print("y cuántas subían en entrenamiento con esa misma característica (lo que la red pudo aprender)")
+    print("\nlas columnas están en %: cuántas subían en entrenamiento con esa característica (lo que la red pudo aprender),")
+    print("la probabilidad promedio que le da la red de que suba, y cuántas suben de verdad en test")
 
     tablas = {}
     for titulo, col in [("HACIA DÓNDE VENÍA EN LAS 20 SEMANAS", "tendencia_20s"),
@@ -94,20 +94,23 @@ if __name__ == "__main__":
     pd.concat({k: v.reset_index().rename(columns={k: "grupo"}) for k, v in tablas.items()}).to_csv(
         CARPETA_RESULTADOS / "patrones.csv")
 
-    # gráfico: lo que dice la red contra lo que pasó, por tendencia y por patrón
-    fig, axes = plt.subplots(1, 2, figsize=(13, 4))
+    # gráfico: lo que pasaba en train, lo que cree la red y lo que pasó en test
+    fig, axes = plt.subplots(1, 3, figsize=(16, 4))
     for ax, col, titulo in [(axes[0], "tendencia_20s", "según hacia dónde venía"),
-                            (axes[1], "patron_ultima_vela", "según el patrón de la última vela")]:
+                            (axes[1], "ultima_vela", "según el color de la última vela"),
+                            (axes[2], "patron_ultima_vela", "según el patrón de la última vela")]:
         t = tablas[col]
         x = np.arange(len(t))
-        ax.bar(x - 0.2, t["red_dice_sube"], 0.4, label="la red dice que sube", color="tab:orange")
-        ax.bar(x + 0.2, t["sube_de_verdad"], 0.4, label="sube de verdad", color="tab:blue")
+        ax.bar(x - 0.27, t["subia_en_train"], 0.27, label="subía en train", color="tab:gray")
+        ax.bar(x, t["prob_red"], 0.27, label="probabilidad que le da la red", color="tab:orange")
+        ax.bar(x + 0.27, t["sube_de_verdad"], 0.27, label="sube de verdad en test", color="tab:blue")
         ax.set_xticks(x)
         ax.set_xticklabels(t.index, rotation=25, ha="right", fontsize=8)
-        ax.set_ylabel("% de las muestras de test")
+        ax.set_ylabel("%")
+        ax.set_ylim(0, 100)
         ax.set_title(titulo)
         ax.axhline(50, color="black", linewidth=0.6, linestyle="--")
-    axes[0].legend(fontsize=8)
+    axes[0].legend(fontsize=8, loc="upper left")
     fig.tight_layout()
     fig.savefig(CARPETA_RESULTADOS / "patrones.png", dpi=120)
     print("\ngráfico guardado en resultados/patrones.png")
